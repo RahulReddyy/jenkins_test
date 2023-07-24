@@ -1,5 +1,7 @@
 package main
 
-func main(){
-fmt.Println("hello Jenkins")
+import "fmt"
+
+func main() {
+	fmt.Println("hello Jenkins")
 }
