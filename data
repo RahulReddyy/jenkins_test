@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+
+    stages {
+       
+        stage('Push to Another Branch') {
+            steps {
+                script {
+                    // Set the source and target branches
+                    def sourceBranch = 'main'
+                    def targetBranch = 'feature-branch'
+
+                    // Clone the repository
+                    git branch: sourceBranch, credentialsId: 'your-credentials-id', url: 'https://github.com/your-repo.git'
+
+                    // Checkout the target branch
+                    sh "git checkout ${targetBranch}"
+
+                    // Merge changes from the source branch to the target branch
+                    sh "git merge ${sourceBranch}"
+
+                    // Push changes to the target branch
+                    sh "git push origin ${targetBranch}"
+                }
+            }
+        }
+    }
+}
